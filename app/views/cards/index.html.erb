@@ -1,11 +1,10 @@
-<h1>Card Table count:</h1>
+<div class="container mx-auto bg-blue-500 rounded-md">
+<h1 class="text-center" >Card Table </h1>
 <br/>
-
-<ul>
+<hr/>
   <% @cards.each do |card| %>
-    <% unless card.archived? %>
+    <% if card.published? %>
         <li>
-
           <a href="/cards/<%= card.id %>"> 
            title: 
           <%= card.title%>
@@ -16,9 +15,10 @@
       </li>
     <% end %>
    <% end %>
-</ul>
 
-<%= link_to "New Card Add", new_card_path %>
+
+<button class="h-12 bg-[#006666] rounded-md w-36" ><%= link_to "New Card Add", new_card_path %> </button>
+</div>
 
 
 
