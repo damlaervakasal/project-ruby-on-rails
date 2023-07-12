@@ -1,0 +1,25 @@
+<h1>Card Table count:</h1>
+<br/>
+
+<ul>
+  <% @cards.each do |card| %>
+    <% unless card.archived? %>
+        <li>
+
+          <a href="/cards/<%= card.id %>"> 
+           title: 
+          <%= card.title%>
+          body:
+          <%= card.body%>
+          </a>
+
+      </li>
+    <% end %>
+   <% end %>
+</ul>
+
+<%= link_to "New Card Add", new_card_path %>
+
+
+
+

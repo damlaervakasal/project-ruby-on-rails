@@ -1,0 +1,26 @@
+<%= form_with model: cards do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %><br>
+    <% cards.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+  <p>
+  <%= form.label :status %><br>
+  <%= form.select :status, Card.statuses.keys %>
+<p>
+</div>
+<hr />
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
