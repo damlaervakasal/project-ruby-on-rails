@@ -1,41 +1,27 @@
-<div class="container mx-auto rounded-md ">
-<h1 class="text-center bg-[#006666] h-12 rounded-md" >Card Table </h1>
-<hr/>
-  <div class="flex space-x-4 bg-white ">
-    <% @cards.each do |card| %>
-      <% if card.published? %>
-          <div class="flex">
-            <div class="flex-row space-x-4 w-80 h-40 bg-slate-400 rounded-lg shadow-sm">
+<div class="container mx-auto rounded-md">
+  <h1 class="flex justify-center font-extrabold text-white items-center bg-[#2563EB] h-16 rounded-md">Card Table</h1>
+    <hr/>
 
-            <a href="/cards/<%= card.id %>"> 
-              <div class="font-bold underline decoration-[#006666] p-2 ">
-                <%= card.title%>
-                </div>
+  <div class="grid grid-cols-3 gap-4 bg-white">
+    <%= render partial: 'cards/card', collection: @published_cards, as: :card %>
 
-              <div class="ml-2">
-              <%= card.body%>
-                </div>
-              </a>
+      <div class="col-span-3 sm:col-span-1 ">
+        <div class="flex justify-center font-extrabold text-white items-center h-8 bg-[#FACC15] rounded-md">TODO</div>
+        <%= render partial: 'cards/card', class:'bg-[#A5B4FC]', collection: @todo_card, as: :card%>
+      </div>
 
-              <div class="">
-              <%= link_to "Edit", edit_card_path(card) %>
-                </div>
+      <div class="col-span-3 sm:col-span-1">
+        <div class="flex justify-center font-extrabold text-white items-center h-8 bg-[#FACC15] rounded-md">UNDERWAY</div>
+        <%= render partial: 'cards/card', collection: @underway_card, as: :card%>
+      </div>
 
-              <div class="mb-4 "> Date:
-              <%= card.created_at.strftime("%B %d, %Y at %H:%M") %>
-                </div>
+      <div class="col-span-3 sm:col-span-1">
+        <div class="flex justify-center font-extrabold text-white items-center h-8 bg-[#FACC15] rounded-md">DONE</div>
+        <%= render partial: 'cards/card', collection: @done_card, as: :card%>
+      </div>
 
-          </div>
-            
-        </div>
-      <% end %>
-    <% end %>
-   </div>
+  </div>
 
 
-<button class="h-12 bg-[#006666] rounded-md w-full" ><%= link_to "New Card Add", new_card_path %> </button>
+    <%= link_to "New Card Add", new_card_path, class: 'mt-8 flex justify-center font-extrabold text-white items-center bg-[#2563EB] h-16 rounded-md w-full' %>
 </div>
-
-
-
-

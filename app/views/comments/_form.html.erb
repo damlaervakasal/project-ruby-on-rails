@@ -1,15 +1,21 @@
-<%= form_with model: [ @card, @card.comments.build ] do |form| %>
-    <p>
-      <%= form.label :commenter %><br>
-      <%= form.text_field :commenter %>
-    </p>
-    <p>
+<div class="container bg-[#E5E7EB] mt-2 grid grid-cols-2 gap-4 rounded-md">
+  <%= form_with model: [ @card, @card.comments.build ] do |form| %>
+
+    <div class="w-full col-span-1 p-4">
+      <%= form.label :commenter, class: 'mt-4' %><br>
+      <%= form.text_field :commenter, class: 'w-full rounded-md text-black' %>
+    </div>
+
+    <div class="w-full col-span-2 p-4">
       <%= form.label :body %><br>
-      <%= form.text_area :body %>
-    </p>
-     
-      <%= form.submit %>
-    </p>
-  
+      <%= form.text_area :body, class: 'w-full rounded-md text-black' %>
+    </div>
+
+    <div class="flex justify-end">
+    <button class="col-span-3 mt-8 mr-4 w-48 h-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white">
+      <%= form.submit%>
+    </button>
+    </div>
+
   <% end %>
-  
+</div>

@@ -1,27 +1,37 @@
-<%= form_with model: cards do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </div>
+<div class="container bg-[#E5E7EB] mt-2 grid grid-cols-2 gap-4 rounded-md">
+  <%= form_with model: cards do |form| %>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
-    <% cards.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <div class="col-span-1 p-4">
+      <%= form.label :title, class: 'mt-4' %><br>
+      <%= form.text_field :title, class: 'w-full rounded-md text-black' %>
+    </div>
 
-  <div>
-  <p>
-  <%= form.label :status %><br>
-  <%= form.select :status, Card.statuses.keys %>
-<p>
+    <div class="col-span-2 p-4">
+      <%= form.label :body %><br>
+      <%= form.text_area :body, class: 'w-full rounded-md text-black' %>
+      <% cards.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div class="col-span-1 p-4">
+      <%= form.label :status, class: 'mt-4' %><br>
+      <%= form.select :status, Card.statuses.keys, {}, class: 'w-full rounded-lg text-black' %>
+    </div>
+
+    <div class="col-span-1 p-4">
+      <%= form.label :category, class: 'mt-4' %><br>
+      <%= form.select :category, Card.categories.keys, {}, class: 'w-full rounded-lg text-black' %>
+    </div>
+
+
+    <hr class="col-span-2">
+
+    <div class="flex justify-end">
+      <button class="mt-8 w-48 h-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white">
+        <%= form.submit %>
+      </button>
+    </div>
+
+  <% end %>
 </div>
-
-<hr />
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>

@@ -1,0 +1,19 @@
+ <div class="flex flex-col">
+    <div class="flex-row space-x-4 w-full h-40 bg-[#E5E7EB] rounded-lg shadow-sm mt-4">
+    
+        <a href="/cards/<%= card.id %>">
+            <div class="font-bold underline decoration-[#006666] p-2 mt-4">
+            <%= card.title %>
+            </div>
+            <div class="ml-2">
+            <%= card.body %>
+            </div>
+        </a>
+        <div class="color-[#A2FF86]">
+            <%= link_to "Edit", edit_card_path(card) %>
+        </div>
+        <div class="mb-4"> Date:
+            <%= card.created_at.strftime("%B %d, %Y at %H:%M") %>
+        </div>
+    </div>
+</div>

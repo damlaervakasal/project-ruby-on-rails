@@ -1,12 +1,17 @@
 
-<ul>
-  <li><%= link_to "Edit", edit_card_path(@card) %></li>
-  <li><%= link_to "Destroy", card_path(@card), data: {
+<div class="container bg-white">
+
+<div class="flex space-x-4 h-12 mb-2">
+  <div class="w-1/2 h-12 rounded-md bg-[#2563EB] flex justify-center items-center"><%= link_to "Edit", edit_card_path(@card), class:"text-white text-center font-bold" %></div>
+  <div class="w-1/2 h-12 rounded-md bg-[#2563EB] flex justify-center items-center"><%= link_to "Destroy", card_path(@card), class:"text-white text-center font-bold", data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
-                  } %></li>
-</ul>
+                  } %></div>
+</div>
+
+
 
 <%= render @card.comments %>
 
 <%= render 'comments/form' %>
+</div>

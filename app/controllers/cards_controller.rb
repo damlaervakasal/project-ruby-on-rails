@@ -1,6 +1,10 @@
 class CardsController < ApplicationController
   def index
-    @cards = Card.all
+    @published_cards = Card.where(status: :published)
+    @archived_card = Card.where(status: :archived)
+    @todo_card = Card.where(category: :todo)
+    @underway_card = Card.where(category: :underway)
+    @done_card = Card.where(category: :done)
   end
 
   def show
@@ -46,6 +50,6 @@ class CardsController < ApplicationController
     
   private
   def card_params
-    params.require(:card).permit(:title, :body, :status)
+    params.require(:card).permit(:title, :body, :status, :category)
   end
 end
