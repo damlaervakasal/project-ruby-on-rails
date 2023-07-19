@@ -13,6 +13,7 @@ class CardsController < ApplicationController
 
   def new 
     @card = Card.new
+    @current_user = User.find_by(email: params[:user_email])
   end
 
   def create

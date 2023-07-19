@@ -12,9 +12,11 @@
     </div>
 
     <div class="flex justify-end">
-    <button class="col-span-3 mt-8 mr-4 w-48 h-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white">
-      <%= form.submit%>
-    </button>
+      <%= link_to "Back", cards_path(@card), class: 'mt-8 w-48 h-12 mr-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white' %>
+      
+      <button class="col-span-3 mt-8 mr-4 w-48 h-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white">
+        <%= form.submit%>
+      </button>
     </div>
 
   <% end %>

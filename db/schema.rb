@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_12_125411) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_123639) do
+  create_table "active_sessions", force: :cascade do |t|
+    t.integer "useer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["useer_id"], name: "index_active_sessions_on_useer_id"
+  end
+
   create_table "cards", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -30,5 +37,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_125411) do
     t.index ["card_id"], name: "index_comments_on_card_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+  end
+
+  add_foreign_key "active_sessions", "useers"
   add_foreign_key "comments", "cards"
 end
