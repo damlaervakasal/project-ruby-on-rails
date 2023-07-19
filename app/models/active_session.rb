@@ -1,3 +1,3 @@
 class ActiveSession < ApplicationRecord
-  belongs_to :useer
+  belongs_to :user
 end

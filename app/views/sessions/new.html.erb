@@ -1,5 +1,9 @@
 <div class="container mx-auto">
   <h2 class="text-2xl font-bold mb-4">Login</h2>
+  <% if flash[:notice] %>
+    <div class=" text-[#0F172A]>
+      <%= flash[:notice] %></div>
+  <% end %>
 
   <%= form_with url: login_path, class: "w-full max-w-sm" do |form| %>
     <div class="mb-4">
@@ -15,6 +19,4 @@
     </div>
   <% end %>
 </div>
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-<% end %>
+

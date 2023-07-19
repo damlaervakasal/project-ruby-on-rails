@@ -1,5 +1,12 @@
 
   <div class="container mx-auto rounded-md">
+
+      <% if flash[:notice] %>
+        <div class=" px-4 py-2 mt-2">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
     <h1 class="flex justify-center mb-2 font-extrabold text-white items-center bg-[#2563EB] h-16 rounded-md">Card Table</h1>
       <hr/>
 
@@ -7,17 +14,17 @@
 
         <div class="col-span-3 sm:col-span-1 ">
           <div class="flex justify-center font-extrabold text-white items-center h-8 bg-[#FACC15] rounded-md">TODO</div>
-          <%= render partial: 'cards/card', class:'bg-[#A5B4FC]', collection: @todo_card, as: :card %>
+          <%= render partial: 'cards/card', class:'bg-[#A5B4FC]', collection: @todo_card, as: :card, user: @user %>
         </div>
 
         <div class="col-span-3 sm:col-span-1">
           <div class="flex justify-center font-extrabold text-white items-center h-8 bg-[#FACC15] rounded-md">UNDERWAY</div>
-          <%= render partial: 'cards/card', collection: @underway_card, as: :card%>
+          <%= render partial: 'cards/card', collection: @underway_card, as: :card, user: @user%>
         </div>
 
         <div class="col-span-3 sm:col-span-1">
           <div class="flex justify-center font-extrabold text-white items-center h-8 bg-[#FACC15] rounded-md">DONE</div>
-          <%= render partial: 'cards/card', collection: @done_card, as: :card%>
+          <%= render partial: 'cards/card', collection: @done_card, as: :card, user: @user%>
         </div>
 
     </div>

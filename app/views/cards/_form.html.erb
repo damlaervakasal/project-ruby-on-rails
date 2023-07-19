@@ -4,6 +4,10 @@
 
   <%= form_with model: cards do |form| %>
 
+    <div class="col-span-1 p-4 text-black font-extrabold">
+      Kullanıcı: <%= current_user.name %>
+     </div>
+
     <div class="col-span-1 p-4">
       <%= form.label :title, class: 'mt-4' %><br>
       <%= form.text_field :title, class: 'w-full rounded-md text-black' %>

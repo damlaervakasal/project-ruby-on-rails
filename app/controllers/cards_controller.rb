@@ -5,6 +5,7 @@ class CardsController < ApplicationController
     @todo_card = Card.where(category: :todo)
     @underway_card = Card.where(category: :underway)
     @done_card = Card.where(category: :done)
+    @user = current_user
   end
 
   def show
@@ -18,6 +19,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
+    @card.user_id = current_user.id
     puts '================================'
     puts @card.inspect
     if @card.save

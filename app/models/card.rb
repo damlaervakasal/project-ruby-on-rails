@@ -5,6 +5,7 @@ class Card < ApplicationRecord
     validates :body, presence: true, length: {minimum: 5}
     enum :status, [:draft, :published, :archived, :trash]
     enum :category, [:todo, :underway, :done ]
+    belongs_to :user
 
     
 end

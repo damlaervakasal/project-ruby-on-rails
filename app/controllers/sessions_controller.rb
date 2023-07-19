@@ -8,10 +8,9 @@ class SessionsController < ApplicationController
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
         flash.now[:alert] = "Incorrect email or password."
-        redirect_to root_path
+        redirect_to root_path, notice:"yehuu giriş yaptınız"
       else
-        flash.now[:alert] = "Incorrect email or password."
-        render :new, status: :unprocessable_entity
+        redirect_to login_path, notice:"Incorrect email or password."
       end
   end
 

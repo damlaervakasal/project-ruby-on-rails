@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   resources :cards do
     resources :comments
   end
+
+  resources :users do
+    resources :cards, only: :index
+  end
   
   root 'cards#index'
 
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   get 'login', to: 'sessions#new'
   delete 'logout', to: 'sessions#destroy'
+  get 'logout', to: 'sessions#destroy'
   
 end
  
