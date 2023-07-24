@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_125759) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_24_101448) do
   create_table "active_sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_active_sessions_on_user_id"
+  end
+
+  create_table "assignments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_assignments_on_card_id"
+    t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
   create_table "cards", force: :cascade do |t|
@@ -49,6 +58,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_125759) do
   end
 
   add_foreign_key "active_sessions", "users", on_delete: :cascade
+  add_foreign_key "assignments", "cards"
+  add_foreign_key "assignments", "users"
   add_foreign_key "cards", "users"
   add_foreign_key "comments", "cards"
 end

@@ -7,10 +7,13 @@
 
         <a href="/cards/<%= card.id %>">
             <div class="font-bold underline decoration-[#006666] ml-2">
-            <%= card.title %>
+                <%= card.title %>
             </div>
             <div class="ml-2">
-            <%= card.body %>
+                <%= card.body %>
+            </div>
+            <div class="ml-2">
+            <%#= form.collection_check_boxes(:user_ids, User.all, :id, :name) %>
             </div>
         </a>
         <div class="color-[#A2FF86]">

@@ -14,8 +14,9 @@ class UsersController < ApplicationController
         redirect_to signup_path, notice:'Şifreler eşleşmiyor veya formu eksiksiz doldurmadınız.'
       else
         redirect_to signup_path, notice:'formu eksiksiz doldurmadınız.'
-     
-    end    
+      end    
+
+      assignment_ids = params[:assignment_ids]
   end
 
 

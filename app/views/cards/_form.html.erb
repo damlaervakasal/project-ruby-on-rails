@@ -29,6 +29,11 @@
     <div class="col-span-1 p-4">
       <%= form.label :category, class: 'mt-4' %><br>
       <%= form.select :category, Card.categories.keys, {}, class: 'w-full rounded-lg text-black' %>
+      </div>
+      
+    <div class="col-span-1 p-4">
+      <%= form.label :assignments, class: 'mt-4' %><br>
+      <%= form.collection_check_boxes(:user_ids, User.all, :id, :name) %>
     </div>
 
 

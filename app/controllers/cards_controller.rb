@@ -1,4 +1,7 @@
 class CardsController < ApplicationController
+  before_action :set_card, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
+
   def index
     @published_cards = Card.where(status: :published)
     @archived_card = Card.where(status: :archived)
@@ -41,18 +44,28 @@ class CardsController < ApplicationController
       else
         render :edit, status: :unprocessable_entity
       end
-    end
+  end
 
   def destroy
     @card = Card.find(params[:id])
     @card.destroy
   
     redirect_to root_path, status: :see_other
-    end
-  
+  end
     
   private
+
+  def set_card
+    @card = Card.find(params[:id])
+  end
+
   def card_params
-    params.require(:card).permit(:title, :body, :status, :category)
+    params.require(:card).permit(:title, :body, :status, :category, user_ids: [])
+  end
+
+  def authorize_user
+    if @card.user != current_user
+      redirect_to root_path, notice: 'BU işlem için yetkiniz yok!'
+    end
   end
 end

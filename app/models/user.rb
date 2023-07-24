@@ -3,8 +3,11 @@ class User < ApplicationRecord
 
     before_save :downcase_email
     validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
+
     has_many :active_sessions, dependent: :destroy
     has_many :cards, dependent: :destroy
+    has_many :assignments
+    has_many :assigned_cards, through: :assignments
 
     def password_match?
       password == password_confirmation
