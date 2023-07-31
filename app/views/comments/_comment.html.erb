@@ -1,7 +1,7 @@
 <div class="bg-[#E5E7EB] border rounded p-4">
   <div class="mb-2">
     <strong>Commenter:</strong>
-    <%= current_user.name%>
+    <%= comment.user %>
   </div>
 
   <div class="mb-4">
@@ -9,10 +9,16 @@
     <%= comment.body %>
   </div>
 
-  <div class="flex justify-end">
-    <%= link_to "Destroy Comment", [comment.card, comment], data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
-                }, class: "text-red-500 font-bold " %>
-  </div>
+  <% if comment.user == current_user%>
+    <div class="flex justify-end">
+      <%= link_to "Destroy Comment", [comment.card, comment], data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "text-red-500 font-bold " %>
+    </div>
+    <% else%>
+    <div class="flex justify-end">
+    <%= comment.created_at.strftime("%B %d, %Y at %H:%M") %>
+    </div>
+  <% end %>
 </div>

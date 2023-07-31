@@ -1,12 +1,14 @@
 class CommentsController < ApplicationController
     before_action :set_card
-
+    before_action :set_comment, only: [:destroy]
+    
     def new
         @comment = Comment.new
     end
 
     def create
         @comment = @card.comments.build(comment_params)
+        @comment.user_id = current_user.id
         if @comment.save
             redirect_to card_path(@card)
         else
@@ -16,7 +18,6 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = @card.comments.find(params[:id])
         @comment.destroy
         redirect_to card_path(@card)
     end
@@ -28,6 +29,10 @@ class CommentsController < ApplicationController
 
     def set_card
         @card = Card.find(params[:card_id])
+    end
+
+    def set_comment
+        @comment = current_user.comments.find(params[:id])
     end
 
 
