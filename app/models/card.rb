@@ -1,7 +1,7 @@
 class Card < ApplicationRecord
 
     has_many :comments, dependent: :destroy
-    has_many :assignments
+    has_many :assignments, dependent: :destroy
     has_many :users, through: :assignments
 
     validates :title, presence: true

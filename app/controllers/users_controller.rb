@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
 
       if @user.save && @user.password_match?
-      redirect_to root_url, notice:"Başarılı bir şekilde kaydınız oluşturuldu. Lüfen giriş yapın."
+      redirect_to login_path, notice:"Başarılı bir şekilde kaydınız oluşturuldu. Lüfen giriş yapın."
       elsif !@user.password_match?
         redirect_to signup_path, notice:'Şifreler eşleşmiyor veya formu eksiksiz doldurmadınız.'
       else

@@ -32,10 +32,9 @@
       </div>
       
     <div class="col-span-1 p-4">
-      <%= form.label :assignments, class: 'mt-4' %><br>
+      <%= form.label :Assignments, class: 'mt-4' %><br>
       <%= form.collection_check_boxes(:user_ids, User.all, :id, :name) %>
     </div>
-
 
     <hr class="col-span-2">
 

@@ -1,26 +1,31 @@
  <div class="flex flex-col">
-    <div class="flex-row space-x-4 w-full h-40 bg-[#E5E7EB] rounded-lg shadow-sm mt-4">
-
-    <div class="ml-2 text-violet-800">
-      <%= card.user.name %>
-    </div>
+    <div class="flex-row space-x-4 w-full bg-[#E5E7EB] rounded-lg shadow-sm mt-4">
 
         <a href="/cards/<%= card.id %>">
-            <div class="font-bold underline decoration-[#006666] ml-2">
+            <h5 class="mb-2 ml-2 text-2xl font-bold tracking-tight text-gray-900">
+                <%= card.user.name %>
+            </h5>
+
+            <h3 class="font-bold ml-2">
                 <%= card.title %>
-            </div>
-            <div class="ml-2">
+            </h3>
+
+            <p class="ml-2">
                 <%= card.body %>
-            </div>
+            </p>
+
             <div class="ml-2">
-            <%#= form.collection_check_boxes(:user_ids, User.all, :id, :name) %>
+              <% card.users.each do |user| %>
+                <%= user.name %> 
+            <% end %>
             </div>
         </a>
-        <div class="color-[#A2FF86]">
+        <div class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <%= link_to "Edit", edit_card_path(card) %>
         </div>
         <div class="mb-4"> Date:
             <%= card.created_at.strftime("%B %d, %Y at %H:%M") %>
         </div>
     </div>
+    
 </div>

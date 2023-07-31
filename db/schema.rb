@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_101448) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_135216) do
   create_table "active_sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -40,12 +40,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_101448) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "commenter"
     t.text "body"
     t.integer "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["card_id"], name: "index_comments_on_card_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,4 +63,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_101448) do
   add_foreign_key "assignments", "users"
   add_foreign_key "cards", "users"
   add_foreign_key "comments", "cards"
+  add_foreign_key "comments", "users"
 end
