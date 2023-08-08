@@ -1,10 +1,8 @@
-<div class="container bg-[#E5E7EB] mt-2 grid grid-cols-2 gap-4 rounded-md">
-  <h1 class="flex justify-center font-extrabold text-white items-center bg-[#2563EB] h-12 rounded-md">Add Card</h1>
-    <hr/>
+<div class="container  bg-[#E5E7EB] mt-2 grid grid-cols-2 gap-4 rounded-md">
 
-  <%= form_with model: cards do |form| %>
+  <%= form_with model: card do |form| %>
 
-    <div class="col-span-1 p-4 text-black font-extrabold">
+    <div class="col-span-1 p-4 text-gray-600 font-extrabold">
       Kullanıcı: <%= current_user.name %>
      </div>
 
@@ -16,7 +14,7 @@
     <div class="col-span-2 p-4">
       <%= form.label :body %><br>
       <%= form.text_area :body, class: 'w-full rounded-md text-black' %>
-      <% cards.errors.full_messages_for(:body).each do |message| %>
+      <% card.errors.full_messages_for(:body).each do |message| %>
         <div><%= message %></div>
       <% end %>
     </div>
@@ -39,14 +37,12 @@
     <hr class="col-span-2">
 
     <div class="flex justify-end">
-      <%= link_to "Back", cards_path(@card), class: 'mt-8 w-48 h-12 mr-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white' %>
+      <%= link_to "Back", cards_path, class: 'mt-8 w-48 h-12 mr-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white'%>
 
       <button class="mt-8 w-48 h-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white">
         <%= form.submit %>
       </button>
     </div>
-
-
-
   <% end %>
 </div>
+
