@@ -1,41 +1,42 @@
-<div class="container mx-auto">
-  <h2 class="text-2xl font-bold mb-4">Sign Up</h2>
+<div class="flex items-center justify-center w-full">
+   <div class="flex items-center justify-center">
+      <div class=" rounded-lg shadow p-20 bg-blue-700">
+            <div class="flex items-start justify-between mb-4 rounded-t">
+                <h2 class="text-2xl font-bold mb-4 text-white">Sign Up</h2>
+              </div>
 
-  <% if flash[:notice] %>
-    <div class=" text-[#0F172A] hover:text-[#64748B]">
-      <%= flash[:notice] %></div>
-  <% end %>
-
-
-  <%= form_with model: @user, url: signup_path, class: "w-full max-w-sm" do |form| %>
+  <%= form_with model: @user, url: signup_path, class: "w-[400px]" do |form| %>
     <div class="mb-4">
-      <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :name, class: "block text-white text-md font-bold mb-2" %>
       <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
   
     <div class="mb-4">
-      <%= form.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :email, class: "block text-white text-md font-bold mb-2" %>
       <%= form.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :password, class: "block text-white text-md font-bold mb-2" %>
       <%= form.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :password_confirmation, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :password_confirmation, class: "block text-white text-md font-bold mb-2" %>
       <%= form.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
-    <%= link_to "Already have an account?", login_path, class: "text-blue-500 hover:text-blue-700" %>
+    <%= link_to "Already have an account?", login_path, class: "text-white hover:text-[#FACC15]" %>
 
-    <div class="flex items-center justify-between mt-2">
-      <%= form.submit "Sign Up" ,class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <div class="flex items-center justify-between mt-4">
+      <%= form.submit "Sign Up" ,class: "bg-white hover:bg-blue-700 text-blue-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
 
     </div>
 
   <% end %>
 </div>
+</div>
+</div>
+
 
 

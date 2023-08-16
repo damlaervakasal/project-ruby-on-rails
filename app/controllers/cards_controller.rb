@@ -14,9 +14,9 @@ class CardsController < ApplicationController
   def show
   end
 
-  def new 
+  def new
+    redirect_to login_path, notice: "Giriş yapmalısınız" unless current_user.present?
     @card = Card.new
-    @current_user = User.find_by(email: params[:user_email])
   end
 
   def create
@@ -81,7 +81,7 @@ class CardsController < ApplicationController
 
   def authorize_user
     if @card.user != current_user
-      redirect_to root_path, notice: 'BU işlem için yetkiniz yok!'
+      redirect_to card_path, notice: "Yetkiniz yok"
     end
   end
 

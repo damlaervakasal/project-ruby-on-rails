@@ -1,4 +1,4 @@
-<div class="container  bg-[#E5E7EB] mt-2 grid grid-cols-2 gap-4 rounded-md">
+<div class="container mx-auto bg-[#E5E7EB] col-start-2 col-span-4 rounded-md">
 
   <%= form_with model: card do |form| %>
 
@@ -31,7 +31,7 @@
       
     <div class="col-span-1 p-4">
       <%= form.label :Assignments, class: 'mt-4' %><br>
-      <%= form.collection_check_boxes(:user_ids, User.all, :id, :name) %>
+      <%= form.collection_check_boxes(:user_ids, User.order(:name), :id, :name, {}, class:"ml-2 rounded-md ")%>
     </div>
 
     <hr class="col-span-2">

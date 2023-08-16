@@ -13,4 +13,7 @@ class Card < ApplicationRecord
     belongs_to :user
 
     
+    after_create_commit -> { broadcast_prepend_to "card_cable", target: category, partial:"cards/card", locals: {card: self}}
+
+    
 end

@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email].downcase)
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        flash.now[:alert] = "Incorrect email or password."
         redirect_to root_path, notice:"yehuu giriş yaptınız"
       else
         redirect_to login_path, notice:"Incorrect email or password."

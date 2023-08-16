@@ -7,17 +7,19 @@ class UsersController < ApplicationController
 
     def create
       @user = User.new(user_params)
+      respond_to do |format|
+        if @user.save
+          session[:user_id] = @user.id
+          format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        else
+          flash.now[:alert] = "Invalid email or password."
+          format.html { render :new }
+        end
+      end
+    end
 
-      if @user.save && @user.password_match?
-      redirect_to root_path, notice:"Başarılı bir şekilde kaydınız oluşturuldu. Lüfen giriş yapın."
-      elsif !@user.password_match?
-        redirect_to signup_path, notice:'Şifreler eşleşmiyor veya formu eksiksiz doldurmadınız.'
-      else
-        redirect_to signup_path, notice:'formu eksiksiz doldurmadınız.'
-      end    
-
-      assignment_ids = params[:assignment_ids]
-  end
+    def search
+    end
 
 
   private
