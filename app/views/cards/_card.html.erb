@@ -1,5 +1,4 @@
- <turbo-frame id="messages" action="redirect">
- <div class="flex flex-col">
+<div id="<%= dom_id card%>" class="flex flex-col">
     <div class="flex-row space-x-4 w-full bg-[#E5E7EB] rounded-lg shadow-sm mt-4">
 
         <a href="/cards/<%= card.id %>">
@@ -15,18 +14,22 @@
                 <%= card.body %>
             </p>
 
-            <div class="ml-2">
+            <div class="ml-2" >
               <% card.users.each do |user| %>
                 <%= user.name %> 
             <% end %>
             </div>
         </a>
-        <div class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            <%= link_to "Edit", edit_card_path(card) %>
-        </div>
+        <div class="flex space-x-4 ">
+                <%= link_to "Edit", edit_card_path(card), data: { turbo_frame: "popup"}, class: "text-white items-center px-3 py-2 text-sm font-medium text-center  bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+                <%= link_to "Delete", card_path(card), class: "text-black items-center px-3 py-2 text-sm font-medium text-center bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                    } %>  
+         </div> 
         <div class="mb-4"> Date:
-            <%= card.created_at.strftime("%B %d, %Y at %H:%M") %>
+            <%= card.created_at.strftime("%B %d, %Y") %>
         </div>
+
     </div>
 </div>
-</turbo-frame>

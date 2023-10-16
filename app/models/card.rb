@@ -1,6 +1,7 @@
 class Card < ApplicationRecord
 
     has_many :comments, dependent: :destroy
+
     has_many :assignments, dependent: :destroy
     has_many :users, through: :assignments
 
@@ -11,6 +12,9 @@ class Card < ApplicationRecord
     enum :category, [:todo, :underway, :done ]
     
     belongs_to :user
+
+    
+    after_create_commit -> { broadcast_prepend_to "card_cable", target: category, partial:"cards/card", locals: {card: self}}
 
     
 end

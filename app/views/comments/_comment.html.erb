@@ -1,24 +1,26 @@
-<div class="bg-[#E5E7EB] border rounded p-4">
-  <div class="mb-2">
-    <strong>Commenter:</strong>
-    <%= comment.user %>
-  </div>
-
-  <div class="mb-4">
-    <strong>Comment:</strong>
+<div class="bg-[#ffffff] p-4 px-40">
+  <div class="mb-2 text-xl">
     <%= comment.body %>
   </div>
+  
+  <div class="flex justify-between">
+      <div class="mb-2 font-semibold border-l-4 border-b-4 border-[#FACC15]">
+      <div class="ml-2">
+     <%= comment.user.name %>
+     </div>
+     </div>
 
-  <% if comment.user == current_user%>
-    <div class="flex justify-end">
-      <%= link_to "Destroy Comment", [comment.card, comment], data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  }, class: "text-red-500 font-bold " %>
+    <div class="border-r-4 border-b-4 border-red-700 rounded">
+    <% if comment.user == current_user%>
+        <%= link_to "Destroy Comment", [comment.card, comment], data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    }, class: "text-red-500 font-bold border-none mr-2" %>
+      <% else%>
+      <div class="mr-2">
+      <%= comment.created_at.strftime("%B %d, %Y at %H:%M") %>
+      </div>
+    <% end %>
     </div>
-    <% else%>
-    <div class="flex justify-end">
-    <%= comment.created_at.strftime("%B %d, %Y at %H:%M") %>
-    </div>
-  <% end %>
-</div>
+  </div>
+ </div>

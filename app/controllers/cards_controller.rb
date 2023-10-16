@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:edit, :update, :destroy]
+  before_action :set_card, only: [:edit, :update, :destroy, :show]
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
@@ -12,43 +12,61 @@ class CardsController < ApplicationController
   end
 
   def show
-    @card = Card.find(params[:id])
-    
   end
 
-  def new 
+  def new
+    redirect_to login_path, notice: "Giriş yapmalısınız" unless current_user.present?
     @card = Card.new
-    @current_user = User.find_by(email: params[:user_email])
   end
 
   def create
     @card = Card.new(card_params)
     @card.user_id = current_user.id
-    puts '================================'
-    puts @card.inspect
+
+    
     if @card.save
-      @card.user_ids = params[:card][:user_ids]
-      redirect_to root_path
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [turbo_stream.prepend(@card.category, 
+                                                     partial: 'cards/card', 
+                                                     locals: { card: @card }),
+                                turbo_stream.update('popup')]
+        end
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-  end
+  def edit  
+  end 
 
   def update
       if @card.update(card_params)
-        redirect_to @card
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [turbo_stream.replace(@card,
+                                                        partial: 'cards/card', 
+                                                        locals: { card: @card }),
+                                  turbo_stream.update('popup')]
+          end
+        end
       else
         render :edit, status: :unprocessable_entity
       end
   end
 
   def destroy
-    @card.destroy
-  
-    redirect_to root_path, status: :see_other
+    if @card.destroy
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.remove(@card)
+      end
+    end
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
     
   private
@@ -58,12 +76,15 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:title, :body, :status, :category, user_ids: [])
+    params.require(:card).permit(:title, :body, :status, :category, user_ids: [], card_ids: [])
   end
 
   def authorize_user
     if @card.user != current_user
-      redirect_to root_path, notice: 'BU işlem için yetkiniz yok!'
+      redirect_to card_path, notice: "Yetkiniz yok"
     end
   end
+
+
+
 end
