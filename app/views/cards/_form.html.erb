@@ -1,26 +1,62 @@
-<%= form_with model: cards do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </div>
+<div data-controller="search">
+  <div class="container mx-auto bg-[#E5E7EB] col-start-2 col-span-4 rounded-md">
+    <%= form_with model: card do |form| %>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
-    <% cards.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
+      <div class="col-span-1 p-4 text-gray-600 font-extrabold">
+        Kullanıcı: <%= current_user.name %>
+      </div>
+
+      <div class="col-span-1 p-4">
+        <%= form.label :title, class: 'mt-4' %><br>
+        <%= form.text_field :title, class: 'w-full rounded-md text-black' %>
+      </div>
+
+       <div class="col-span-1 px-4 pt-4">
+        <%= form.label :assignment, class: 'mt-4' %> <br>
+        <span class="flex items-center justify-center">
+          <input type="hidden" name="card[user_ids][]" value="" autocomplete="off">
+          <%= form.text_field :assignment, id: 'form-text-field', data: { action: "input->search#search_field", search_target: "textField" }, class: 'py-2 px-4 w-full outline-inherit border-none bg-[#E5E7EB]', placeholder: 'Search...' %>
+          </span>
+        </div>
+      <div id="searched_user" class="col-span-1 px-4 ">
+      </div>
+
+      <div id="check">
+      </div>
+
+      <div class="col-span-2 p-4">
+        <%= form.label :body %><br>
+        <%= form.text_area :body, class: 'w-full rounded-md text-black' %>
+        <% card.errors.full_messages_for(:body).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class="col-span-1 p-4">
+        <%= form.label :status, class: 'mt-4' %><br>
+        <%= form.select :status, Card.statuses.keys, {}, class: 'w-full rounded-lg text-black' %>
+      </div>
+
+      <div class="col-span-1 p-4">
+        <%= form.label :category, class: 'mt-4' %><br>
+        <%= form.select :category, Card.categories.keys, {}, class: 'w-full rounded-lg text-black' %>
+      </div>  
+
+      <hr class="col-span-2">
+
+      <div class="flex justify-end">
+        <%= link_to "Back", cards_path, class: 'mt-8 w-48 h-12 mr-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white'%>
+
+        <button class="mt-8 w-48 h-12 border rounded-md bg-[#2563EB] flex justify-center items-center font-bold text-white">
+          <%= form.submit %>
+        </button>
+      </div>
     <% end %>
+
   </div>
 
   <div>
-  <p>
-  <%= form.label :status %><br>
-  <%= form.select :status, Card.statuses.keys %>
-<p>
+    <%= render "searches/search_form"%>
+  </div>
 </div>
-<hr />
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>

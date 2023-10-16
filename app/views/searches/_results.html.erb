@@ -1,0 +1,12 @@
+<ul class="left-0 mt-2 max-h-40 overflow-y-auto w-full bg-white border border-black rounded-lg shadow-md">
+    <% local_assigns[:results].each do |user| %>
+    <li class="block px-4 py-2 cursor-pointer hover:bg-gray-100" data-action="click->search#copyCheckbox" data-user-id-value="<%= user.id %>">
+        <%= user.name %>
+    </li>
+    <div class="col-span-1 p-4" id='<%= dom_id(user) %>'>
+        <span><%= user.name %></span>
+        <input type="checkbox" value="<%= user.id %>" name="card[user_ids][]" id="card_user_ids_TEMP_ID">
+    </div>
+    <% end %>
+
+</ul>

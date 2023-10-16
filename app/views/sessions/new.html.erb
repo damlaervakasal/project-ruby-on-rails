@@ -1,0 +1,25 @@
+<div class="inset-0 flex items-center justify-center z-50 w-full overflow-x-hidden md:inset-0">
+   <div class="flex items-center justify-center w-full">
+      <div class="rounded-lg shadow p-20 bg-blue-700">
+            <div class="flex items-start justify-between mb-4 rounded-t">
+                <h2 class="text-4xl text-white font-bold items-center mb-10">Login</h2>
+            </div>
+                <%= form_with url: login_path, class: "w-full max-w-md" do |form| %>
+                  <div class="mb-6">
+                    <%= form.label :email, class: "block text-[#FACC15] text-md font-bold mb-2" %>
+                    <%= form.email_field :email, class: "shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                  </div>
+                  <div class="mb-8">
+                    <%= form.label :password, class: "block text-[#FACC15] text-md font-bold mb-2" %>
+                    <%= form.password_field :password, class: "shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <%= form.submit "Login", class: "bg-[#FACC15] hover:bg-white text-white hover:text-[#FACC15] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"%>
+                  </div>
+                <% end %>
+      </div>
+    </div>
+  </div>
+
+  
+
