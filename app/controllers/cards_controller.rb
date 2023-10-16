@@ -76,7 +76,7 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:title, :body, :status, :category, user_ids: [])
+    params.require(:card).permit(:title, :body, :status, :category, user_ids: [], card_ids: [])
   end
 
   def authorize_user

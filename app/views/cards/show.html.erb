@@ -1,5 +1,7 @@
 
-<div class="container bg-white">
-<%= render @card.comments %>
-<%= render 'comments/form' %>
+<div class="container bg-white flex flex-col-reverse ">
+        <%= render @card.comments %>
+        <br>
+        <br>
+        <%= render 'comments/form' %>
 </div>

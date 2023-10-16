@@ -6,8 +6,10 @@ class User < ApplicationRecord
 
     has_many :active_sessions, dependent: :destroy
     has_many :cards, dependent: :destroy
+
     has_many :assignments
-    has_many :assigned_cards, through: :assignments
+    has_many :cards, through: :assignments
+
     has_many :comments, dependent: :destroy
 
     def password_match?
